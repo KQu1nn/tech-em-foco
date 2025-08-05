@@ -1,7 +1,7 @@
 <template>
     <div
         class="h-screen relative overflow-hidden bg-center bg-no-repeat bg-cover bg-[url(@/assets/hero.jpg)]">
-        <div class="absolute inset-0 bg-[rgba(0,0,0,0.9)]"></div>
+        <div class="absolute inset-0 bg-[rgba(0,0,0,0.95)]"></div>
 
         <div class="relative z-10 space-y-4">
             <HeaderNav />
