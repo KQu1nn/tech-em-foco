@@ -1,5 +1,6 @@
 <template>
-    <div class="w-full flex flex-row flex-wrap justify-between items-center px-5 py-5 bg-[#09090b] border-b-1 border-b-[#27272a] text-[#e7e7e7]">
+    <div class="fixed top-0 w-full z-50 flex flex-row flex-wrap justify-between items-center px-5 py-5
+         bg-[#09090b]/70 backdrop-blur-md border-b border-[#27272a] text-[#e7e7e7]">
         <a href="/">
             <Logo />
         </a>

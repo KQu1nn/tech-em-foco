@@ -1,13 +1,13 @@
 <template>
     <div
-        class="h-screen relative overflow-hidden bg-center bg-no-repeat bg-cover bg-[url(@/assets/hero.jpg)]">
-        <div class="absolute inset-0 bg-[rgba(0,0,0,0.95)]"></div>
+        class="min-h-screen relative bg-center bg-no-repeat bg-cover bg-[url(@/assets/hero.jpg)]">
+        <div class="absolute inset-0 bg-[#09090bf8]"></div>
 
-        <div class="relative z-10 space-y-4">
+        <div class="relative z-10 pt-24 space-y-4">
             <HeaderNav />
 
             <div class="mt-20">
-                <div class="w-full flex flex-col text-white">
+                <div class="w-full flex flex-col text-white ">
                     <div class="w-full flex justify-center mt-3">
                         <div
                             class="inline-flex items-center gap-2 bg-[#27272a] px-5 py-2 my-2 rounded-3xl max-w-max cursor-pointer">
@@ -34,7 +34,7 @@
                             tutoriais e análises para quem quer estar na
                             vanguarda digital.
                         </p>
-                        <div class="flex flex-row gap-4">
+                        <div class="flex flex-row gap-4 pb-15 ">
                             <button
                                 class="cursor-pointer h-11 px-7 rounded-md font-medium bg-gradient-to-r from-blue-500 to-purple-500 flex items-center gap-2">
                                 Explorar Artigos
@@ -48,6 +48,7 @@
                                 Newsletter Gratuita
                             </button>
                         </div>
+                        <div class="w-4/6 border-b-1 border-b-[#27272a]"></div>
                     </div>
                 </div>
             </div>
