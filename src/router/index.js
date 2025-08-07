@@ -1,6 +1,4 @@
-// src/router/index.js
-
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 
 // Importação das páginas
 import Home from '@/views/Home.vue'
@@ -10,7 +8,7 @@ const routes = [
 ]
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHashHistory(), // <--- aqui mudou para hash
   routes,
 })
 

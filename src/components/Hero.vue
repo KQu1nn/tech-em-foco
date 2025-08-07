@@ -1,6 +1,6 @@
 <template>
     <div
-        class="min-h-screen relative bg-center bg-no-repeat bg-cover bg-[url(@/assets/hero.jpg)]">
+        class="min-h-full relative bg-center bg-no-repeat bg-cover bg-[url(@/assets/hero.jpg)]">
         <div class="absolute inset-0 bg-[#09090bf8]"></div>
 
         <div class="relative z-10 pt-24 space-y-4">
