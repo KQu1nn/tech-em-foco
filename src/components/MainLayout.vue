@@ -108,6 +108,55 @@
                     <p class="px-2.5 py-0.5 rounded-xl bg-[#27272a]">15</p>
                 </div>
             </div>
+
+            <div class="w-full h-auto flex flex-col gap-4 border border-[#27272a] rounded-lg py-6 px-4">
+                
+                <h1 class="text-[22px] font-medium">
+                    <font-awesome-icon :icon="['fas', 'arrow-trend-up']" class="text-[#6b26d9]" size="sm" />
+                    Mais Populares
+                </h1>
+                <div class="flex flex-col divide-y divide-[#27272a]">
+                    <div class="py-5 flex flex-col gap-1">
+                        <p class="font-medium text-sm">Introdução ao Deep Learning</p>
+                        <div class="flex flex-row justify-between items-center text-[#a1a1aa] text-xs">
+                            <p>14 Jan 2024</p>
+                            <p>12.5K visualizações</p>
+                        </div>
+                    </div>
+                    <div class="py-5">
+                        <p class="font-medium text-sm">Introdução ao Deep Learning</p>
+                        <div class="flex flex-row justify-between items-center text-[#a1a1aa] text-xs">
+                            <p>14 Jan 2024</p>
+                            <p>12.5K visualizações</p>
+                        </div>
+                    </div>
+                    <div class="py-5">
+                        <p class="font-medium text-sm">Introdução ao Deep Learning</p>
+                        <div class="flex flex-row justify-between items-center text-[#a1a1aa] text-xs">
+                            <p>14 Jan 2024</p>
+                            <p>12.5K visualizações</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="w-full h-auto flex flex-col gap-4 border border-[#27272a] rounded-lg py-6 px-4">
+                <h1 class="text-[22px] font-medium">
+                    Tags Populares
+                </h1>
+                <ul class="flex flex-row flex-wrap gap-1 text-sm">
+                    <li class="border border-[#27272a] px-2 rounded-xl hover:bg-purple-800 hover:border-transparent cursor-pointer">IA</li>
+                    <li class="border border-[#27272a] px-2 rounded-xl hover:bg-purple-800 hover:border-transparent cursor-pointer">Python</li>
+                    <li class="border border-[#27272a] px-2 rounded-xl hover:bg-purple-800 hover:border-transparent cursor-pointer">Javascript</li>
+                    <li class="border border-[#27272a] px-2 rounded-xl hover:bg-purple-800 hover:border-transparent cursor-pointer">React</li>
+                    <li class="border border-[#27272a] px-2 rounded-xl hover:bg-purple-800 hover:border-transparent cursor-pointer">Node.js</li>
+                    <li class="border border-[#27272a] px-2 rounded-xl hover:bg-purple-800 hover:border-transparent cursor-pointer">Cloud</li>
+                    <li class="border border-[#27272a] px-2 rounded-xl hover:bg-purple-800 hover:border-transparent cursor-pointer">DevOps</li>
+                    <li class="border border-[#27272a] px-2 rounded-xl hover:bg-purple-800 hover:border-transparent cursor-pointer">Blockchain</li>
+                </ul>
+            </div>
+        
         </aside>
         
     </div>
