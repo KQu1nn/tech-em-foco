@@ -6,283 +6,32 @@
                 <p class="w-5/6 md:w-4/6 text-lg text-center text-[#a1a1aa]">Fique por dentro das últimas novidades e tendências em tecnologia e inteligência artificial</p>
             </div>
 
-            <div class="w-full flex flex-col gap-5 pb-10 items-center md:items-start">
-
-                <h1 class="text-xl flex flex-row items-center gap-3">
-                    <div class="w-1 h-6 rounded bg-gradient-to-b from-purple-500 to-blue-500"></div>
-                    Artigo em Destaque
-                </h1>
-
-                <div class="w-80 md:w-4/6 border border-[#1f133d] rounded-lg cursor-pointer">
-                    <div class="h-48 w-full rounded-t-lg flex justify-center items-center bg-purple-700">
-                        <!-- <img src="https://via.placeholder.com/600x200" alt="imagem artigo" class="h-48 w-full object-cover rounded-t-lg"> -->
-                        Imagem
-                    </div>
-                    <div class="p-6 flex flex-col gap-3">
-                        <div class="flex flex-row gap-3 text-[#a1a1aa]">
-                            <p class="flex flex-row gap-1 items-center text-sm">
-                                <font-awesome-icon :icon="['far', 'calendar']" class="rounded"/>
-                                15 Jan 2025
-                            </p>
-                            <p class="flex flex-row gap-1 items-center text-sm">
-                                <font-awesome-icon  :icon="['far', 'clock']"  class="rounded" />
-                                8 min
-                            </p>
-                        </div>
-                        <div class="flex flex-col gap-3">
-                            <h2 class="text-xl font-medium">O Futuro da Inteligência Artificial: Tendências para 2024</h2>
-                            <p class="text-[#a1a1aa]">Explore as principais tendências em IA que estão moldando o futuro da tecnologia, desde machine learning até redes neurais avançadas.</p>
-                        </div>
-                        <button class="text-start text-purple-700 cursor-pointer transition hover:brightness-110">
-                            Ler mais
-                            <font-awesome-icon icon="arrow-right" style="width: 14px; height: 14px"/>
-                        </button>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="w-full justify-center md:justify-normal flex flex-row flex-wrap gap-8 pb-16"> <!-- Articles -->
-
-                <div class="w-80 md:w-72 border border-[#27272a] rounded-md">
-                    <div class="w-full h-48 flex justify-center items-center bg-purple-700 rounded-t-md">
-                        Imagem
-                    </div>
-                    <div class="p-6 flex flex-col gap-3">
-                        <div class="flex flex-row gap-3 text-[#a1a1aa]">
-                            <p class="flex flex-row gap-1 items-center text-sm">
-                                <font-awesome-icon :icon="['far', 'calendar']" class="rounded"/>
-                                15 Jan 2025
-                            </p>
-                            <p class="flex flex-row gap-1 items-center text-sm">
-                                <font-awesome-icon  :icon="['far', 'clock']"  class="rounded" />
-                                8 min
-                            </p>
-                        </div>
-                        <div class="flex flex-col gap-3">
-                            <h2 class="text-xl font-medium">O Futuro da Inteligência Artificial: Tendências para 2024</h2>
-                            <p class="text-[#a1a1aa]">Explore as principais tendências em IA que estão moldando o futuro da tecnologia</p>
-                        </div>
-                        <button class="text-start text-purple-700 cursor-pointer transition hover:brightness-110">
-                            Ler mais
-                            <font-awesome-icon icon="arrow-right" style="width: 14px; height: 14px"/>
-                        </button>
-                    </div>
-                </div>
-                
-                <div class="w-80 md:w-72 border border-[#27272a] rounded-md">
-                    <div class="w-full h-48 flex justify-center items-center bg-purple-700 rounded-t-md">
-                        Imagem
-                    </div>
-                    <div class="p-6 flex flex-col gap-3">
-                        <div class="flex flex-row gap-3 text-[#a1a1aa]">
-                            <p class="flex flex-row gap-1 items-center text-sm">
-                                <font-awesome-icon :icon="['far', 'calendar']" class="rounded"/>
-                                15 Jan 2025
-                            </p>
-                            <p class="flex flex-row gap-1 items-center text-sm">
-                                <font-awesome-icon  :icon="['far', 'clock']"  class="rounded" />
-                                8 min
-                            </p>
-                        </div>
-                        <div class="flex flex-col gap-3">
-                            <h2 class="text-xl font-medium">O Futuro da Inteligência Artificial: Tendências para 2024</h2>
-                            <p class="text-[#a1a1aa]">Explore as principais tendências em IA que estão moldando o futuro da tecnologia</p>
-                        </div>
-                        <button class="text-start text-purple-700 cursor-pointer transition hover:brightness-110">
-                            Ler mais
-                            <font-awesome-icon icon="arrow-right" style="width: 14px; height: 14px"/>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="w-80 md:w-72 border border-[#27272a] rounded-md">
-                    <div class="w-full h-48 flex justify-center items-center bg-purple-700 rounded-t-md">
-                        Imagem
-                    </div>
-                    <div class="p-6 flex flex-col gap-3">
-                        <div class="flex flex-row gap-3 text-[#a1a1aa]">
-                            <p class="flex flex-row gap-1 items-center text-sm">
-                                <font-awesome-icon :icon="['far', 'calendar']" class="rounded"/>
-                                15 Jan 2025
-                            </p>
-                            <p class="flex flex-row gap-1 items-center text-sm">
-                                <font-awesome-icon  :icon="['far', 'clock']"  class="rounded" />
-                                8 min
-                            </p>
-                        </div>
-                        <div class="flex flex-col gap-3">
-                            <h2 class="text-xl font-medium">O Futuro da Inteligência Artificial: Tendências para 2024</h2>
-                            <p class="text-[#a1a1aa]">Explore as principais tendências em IA que estão moldando o futuro da tecnologia</p>
-                        </div>
-                        <button class="text-start text-purple-700 cursor-pointer transition hover:brightness-110">
-                            Ler mais
-                            <font-awesome-icon icon="arrow-right" style="width: 14px; height: 14px"/>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="w-80 md:w-72 border border-[#27272a] rounded-md">
-                    <div class="w-full h-48 flex justify-center items-center bg-purple-700 rounded-t-md">
-                        Imagem
-                    </div>
-                    <div class="p-6 flex flex-col gap-3">
-                        <div class="flex flex-row gap-3 text-[#a1a1aa]">
-                            <p class="flex flex-row gap-1 items-center text-sm">
-                                <font-awesome-icon :icon="['far', 'calendar']" class="rounded"/>
-                                15 Jan 2025
-                            </p>
-                            <p class="flex flex-row gap-1 items-center text-sm">
-                                <font-awesome-icon  :icon="['far', 'clock']"  class="rounded" />
-                                8 min
-                            </p>
-                        </div>
-                        <div class="flex flex-col gap-3">
-                            <h2 class="text-xl font-medium">O Futuro da Inteligência Artificial: Tendências para 2024</h2>
-                            <p class="text-[#a1a1aa]">Explore as principais tendências em IA que estão moldando o futuro da tecnologia</p>
-                        </div>
-                        <button class="text-start text-purple-700 cursor-pointer transition hover:brightness-110">
-                            Ler mais
-                            <font-awesome-icon icon="arrow-right" style="width: 14px; height: 14px"/>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="w-80 md:w-72 border border-[#27272a] rounded-md">
-                    <div class="w-full h-48 flex justify-center items-center bg-purple-700 rounded-t-md">
-                        Imagem
-                    </div>
-                    <div class="p-6 flex flex-col gap-3">
-                        <div class="flex flex-row gap-3 text-[#a1a1aa]">
-                            <p class="flex flex-row gap-1 items-center text-sm">
-                                <font-awesome-icon :icon="['far', 'calendar']" class="rounded"/>
-                                15 Jan 2025
-                            </p>
-                            <p class="flex flex-row gap-1 items-center text-sm">
-                                <font-awesome-icon  :icon="['far', 'clock']"  class="rounded" />
-                                8 min
-                            </p>
-                        </div>
-                        <div class="flex flex-col gap-3">
-                            <h2 class="text-xl font-medium">O Futuro da Inteligência Artificial: Tendências para 2024</h2>
-                            <p class="text-[#a1a1aa]">Explore as principais tendências em IA que estão moldando o futuro da tecnologia</p>
-                        </div>
-                        <button class="text-start text-purple-700 cursor-pointer transition hover:brightness-110">
-                            Ler mais
-                            <font-awesome-icon icon="arrow-right" style="width: 14px; height: 14px"/>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
+            <FeaturedArticle />
+            <FeedCards :posts="posts"/>
         </div>
 
         <aside class="w-full md:w-80 flex flex-col gap-10 p-6 min-w-[200px] break-words whitespace-normal">
-
             <Newsletter />
-
-            <div class="w-full h-auto flex flex-col gap-4 border border-[#27272a] rounded-lg py-6 px-4">
-                <h1 class="text-[22px] font-medium">
-                    <font-awesome-icon :icon="['fas', 'rss']" class="text-blue-500" size="sm" />
-                    Categorias
-                </h1>
-                <div class="flex flex-row items-center justify-between text-sm font-medium p-1.5 transition cursor-pointer hover:bg-[#27272a] hover:rounded">
-                    <div class="flex flex-row items-center gap-2">
-                        <div class="w-3 h-3 rounded bg-purple-700"></div>
-                        <p>Inteligência Artificial</p>
-                    </div>
-                    <p class="px-2.5 py-0.5 rounded-xl bg-[#27272a]">42</p>
-                </div>
-                <div class="flex flex-row items-center justify-between text-sm font-medium p-1.5 transition cursor-pointer hover:bg-[#27272a] hover:rounded">
-                    <div class="flex flex-row items-center gap-2">
-                        <div class="w-3 h-3 rounded bg-purple-700"></div>
-                        <p>Machine Learning</p>
-                    </div>
-                    <p class="px-2.5 py-0.5 rounded-xl bg-[#27272a]">38</p>
-                </div>
-                <div class="flex flex-row items-center justify-between text-sm font-medium p-1.5 transition cursor-pointer hover:bg-[#27272a] hover:rounded">
-                    <div class="flex flex-row items-center gap-2">
-                        <div class="w-3 h-3 rounded bg-blue-400"></div>
-                        <p>Data Science</p>
-                    </div>
-                    <p class="px-2.5 py-0.5 rounded-xl bg-[#27272a]">29</p>
-                </div>
-                <div class="flex flex-row items-center justify-between text-sm font-medium p-1.5 transition cursor-pointer hover:bg-[#27272a] hover:rounded">
-                    <div class="flex flex-row items-center gap-2">
-                        <div class="w-3 h-3 rounded bg-purple-700"></div>
-                        <p>Robótica</p>
-                    </div>
-                    <p class="px-2.5 py-0.5 rounded-xl bg-[#27272a]">10</p>
-                </div>
-                <div class="flex flex-row items-center justify-between text-sm font-medium p-1.5 transition cursor-pointer hover:bg-[#27272a] hover:rounded">
-                    <div class="flex flex-row items-center gap-2">
-                        <div class="w-3 h-3 rounded bg-blue-700"></div>
-                        <p>Automação</p>
-                    </div>
-                    <p class="px-2.5 py-0.5 rounded-xl bg-[#27272a]">18</p>
-                </div>
-                <div class="flex flex-row items-center justify-between text-sm font-medium p-1.5 transition cursor-pointer hover:bg-[#27272a] hover:rounded">
-                    <div class="flex flex-row items-center gap-2">
-                        <div class="w-3 h-3 rounded bg-purple-700"></div>
-                        <p>IoT</p>
-                    </div>
-                    <p class="px-2.5 py-0.5 rounded-xl bg-[#27272a]">15</p>
-                </div>
-            </div>
-
-            <div class="w-full h-auto flex flex-col gap-4 border border-[#27272a] rounded-lg py-6 px-4">
-                
-                <h1 class="text-[22px] font-medium">
-                    <font-awesome-icon :icon="['fas', 'arrow-trend-up']" class="text-[#6b26d9]" size="sm" />
-                    Mais Populares
-                </h1>
-                <div class="flex flex-col divide-y divide-[#27272a]">
-                    <div class="py-5 flex flex-col gap-1">
-                        <p class="font-medium text-sm">Introdução ao Deep Learning</p>
-                        <div class="flex flex-row justify-between items-center text-[#a1a1aa] text-xs">
-                            <p>14 Jan 2024</p>
-                            <p>12.5K visualizações</p>
-                        </div>
-                    </div>
-                    <div class="py-5">
-                        <p class="font-medium text-sm">Introdução ao Deep Learning</p>
-                        <div class="flex flex-row justify-between items-center text-[#a1a1aa] text-xs">
-                            <p>14 Jan 2024</p>
-                            <p>12.5K visualizações</p>
-                        </div>
-                    </div>
-                    <div class="py-5">
-                        <p class="font-medium text-sm">Introdução ao Deep Learning</p>
-                        <div class="flex flex-row justify-between items-center text-[#a1a1aa] text-xs">
-                            <p>14 Jan 2024</p>
-                            <p>12.5K visualizações</p>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="w-full h-auto flex flex-col gap-4 border border-[#27272a] rounded-lg py-6 px-4">
-                <h1 class="text-[22px] font-medium">
-                    Tags Populares
-                </h1>
-                <ul class="flex flex-row flex-wrap gap-1 text-sm">
-                    <li class="border border-[#27272a] px-2 rounded-xl hover:bg-purple-800 hover:border-transparent cursor-pointer">IA</li>
-                    <li class="border border-[#27272a] px-2 rounded-xl hover:bg-purple-800 hover:border-transparent cursor-pointer">Python</li>
-                    <li class="border border-[#27272a] px-2 rounded-xl hover:bg-purple-800 hover:border-transparent cursor-pointer">Javascript</li>
-                    <li class="border border-[#27272a] px-2 rounded-xl hover:bg-purple-800 hover:border-transparent cursor-pointer">React</li>
-                    <li class="border border-[#27272a] px-2 rounded-xl hover:bg-purple-800 hover:border-transparent cursor-pointer">Node.js</li>
-                    <li class="border border-[#27272a] px-2 rounded-xl hover:bg-purple-800 hover:border-transparent cursor-pointer">Cloud</li>
-                    <li class="border border-[#27272a] px-2 rounded-xl hover:bg-purple-800 hover:border-transparent cursor-pointer">DevOps</li>
-                    <li class="border border-[#27272a] px-2 rounded-xl hover:bg-purple-800 hover:border-transparent cursor-pointer">Blockchain</li>
-                </ul>
-            </div>
-        
+            <Categories />
+            <MostPopular />
+            <PopularTags />
         </aside>
     </div>
     <Footer />
 </template>
 <script setup>
+import Categories from './Categories.vue';
+import FeaturedArticle from './FeaturedArticle.vue';
+import FeedCards from './FeedCards.vue';
 import Footer from './Footer.vue';
+import MostPopular from './MostPopular.vue';
 import Newsletter from './Newsletter.vue';
+import PopularTags from './PopularTags.vue';
+
+defineProps({
+    posts: {
+        type: Array,
+        required: true
+    }
+})
 </script>

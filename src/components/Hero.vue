@@ -36,7 +36,9 @@
                         <div class="flex flex-row gap-4 pb-3 md:pb-15 ">
                             <button
                                 class="cursor-pointer h-11 text-sm px-3 md:text-base md:px-7 rounded-md font-medium bg-gradient-to-r from-blue-500 to-purple-500 flex items-center gap-2">
-                                Explorar Artigos
+                                <RouterLink to="/Articles">
+                                    Explorar Artigos
+                                </RouterLink>                                
                                 <font-awesome-icon
                                     icon="arrow-right"
                                     style="width: 14px; height: 14px"
