@@ -1,19 +1,19 @@
 <template>
-    <div class="flex min-h-screen bg-[#09090b] text-white">
-        <div class="flex-1 p-6">
-            <div class="h-60 w-full flex flex-col justify-center items-center gap-3">
+    <div class="flex flex-col md:flex-row min-h-screen bg-[#09090b] text-white">
+        <div class="flex-1 md:p-6">
+            <div class="h-52 md:h-60 w-full flex flex-col justify-center items-center gap-3">
                 <h1 class="text-4xl font-bold">Últimos <span class="bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">Artigos</span></h1>
-                <p class="md:w-4/6 text-lg text-center text-[#a1a1aa]">Fique por dentro das últimas novidades e tendências em tecnologia e inteligência artificial</p>
+                <p class="w-5/6 md:w-4/6 text-lg text-center text-[#a1a1aa]">Fique por dentro das últimas novidades e tendências em tecnologia e inteligência artificial</p>
             </div>
 
-            <div class="w-full flex flex-col gap-5 pb-10"> <!-- Destaque -->
+            <div class="w-full flex flex-col gap-5 pb-10 items-center md:items-start">
 
                 <h1 class="text-xl flex flex-row items-center gap-3">
                     <div class="w-1 h-6 rounded bg-gradient-to-b from-purple-500 to-blue-500"></div>
                     Artigo em Destaque
                 </h1>
 
-                <div class="h-auto md:w-4/6 border border-[#1f133d] rounded-lg cursor-pointer">
+                <div class="w-80 md:w-4/6 border border-[#1f133d] rounded-lg cursor-pointer">
                     <div class="h-48 w-full rounded-t-lg flex justify-center items-center bg-purple-700">
                         <!-- <img src="https://via.placeholder.com/600x200" alt="imagem artigo" class="h-48 w-full object-cover rounded-t-lg"> -->
                         Imagem
@@ -42,9 +42,9 @@
 
             </div>
 
-            <div class="w-full flex flex-row flex-wrap gap-8 pb-16"> <!-- Articles -->
+            <div class="w-full justify-center md:justify-normal flex flex-row flex-wrap gap-8 pb-16"> <!-- Articles -->
 
-                <div class="w-72 border border-[#27272a] rounded-md">
+                <div class="w-80 md:w-72 border border-[#27272a] rounded-md">
                     <div class="w-full h-48 flex justify-center items-center bg-purple-700 rounded-t-md">
                         Imagem
                     </div>
@@ -70,7 +70,7 @@
                     </div>
                 </div>
                 
-                <div class="w-72 border border-[#27272a] rounded-md">
+                <div class="w-80 md:w-72 border border-[#27272a] rounded-md">
                     <div class="w-full h-48 flex justify-center items-center bg-purple-700 rounded-t-md">
                         Imagem
                     </div>
@@ -96,7 +96,7 @@
                     </div>
                 </div>
 
-                <div class="w-72 border border-[#27272a] rounded-md">
+                <div class="w-80 md:w-72 border border-[#27272a] rounded-md">
                     <div class="w-full h-48 flex justify-center items-center bg-purple-700 rounded-t-md">
                         Imagem
                     </div>
@@ -122,7 +122,7 @@
                     </div>
                 </div>
 
-                <div class="w-72 border border-[#27272a] rounded-md">
+                <div class="w-80 md:w-72 border border-[#27272a] rounded-md">
                     <div class="w-full h-48 flex justify-center items-center bg-purple-700 rounded-t-md">
                         Imagem
                     </div>
@@ -148,7 +148,7 @@
                     </div>
                 </div>
 
-                <div class="w-72 border border-[#27272a] rounded-md">
+                <div class="w-80 md:w-72 border border-[#27272a] rounded-md">
                     <div class="w-full h-48 flex justify-center items-center bg-purple-700 rounded-t-md">
                         Imagem
                     </div>
@@ -177,7 +177,7 @@
 
         </div>
 
-        <aside class="w-80 flex flex-col gap-10 p-6 min-w-[200px] break-words whitespace-normal">
+        <aside class="w-full md:w-80 flex flex-col gap-10 p-6 min-w-[200px] break-words whitespace-normal">
 
             <Newsletter />
 

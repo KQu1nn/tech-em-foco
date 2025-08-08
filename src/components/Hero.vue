@@ -3,7 +3,7 @@
         class="min-h-full relative bg-center bg-no-repeat bg-cover bg-[url(@/assets/hero.jpg)]">
         <div class="absolute inset-0 bg-[#09090bf8]"></div>
 
-        <div class="relative z-10 pt-24 space-y-4">
+        <div class="relative z-10 pt-18 md:pt-24 space-y-4">
             <HeaderNav />
 
             <div class="mt-20">
@@ -18,9 +18,8 @@
                         </div>
                     </div>
 
-                    <div
-                        class="w-full flex flex-col gap-7 items-center justify-center py-8">
-                        <h1 class="text-center text-7xl font-bold leading-none">
+                    <div class="w-full flex flex-col gap-7 items-center justify-center py-8">
+                        <h1 class="text-center text-4xl md:text-7xl font-bold leading-none">
                             <span
                                 class="bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
                                 Inteligência Artificial </span
@@ -28,15 +27,15 @@
                             <span class="text-white">& Tecnologia</span>
                         </h1>
 
-                        <p class="text-center text-[#a1a1aa] text-2xl">
+                        <p class="text-center text-[#a1a1aa] text-md px-2 md:text-2xl">
                             Descubra as últimas tendências em IA, tecnologia e
                             inovação. Artigos, <br />
                             tutoriais e análises para quem quer estar na
                             vanguarda digital.
                         </p>
-                        <div class="flex flex-row gap-4 pb-15 ">
+                        <div class="flex flex-row gap-4 pb-3 md:pb-15 ">
                             <button
-                                class="cursor-pointer h-11 px-7 rounded-md font-medium bg-gradient-to-r from-blue-500 to-purple-500 flex items-center gap-2">
+                                class="cursor-pointer h-11 text-sm px-3 md:text-base md:px-7 rounded-md font-medium bg-gradient-to-r from-blue-500 to-purple-500 flex items-center gap-2">
                                 Explorar Artigos
                                 <font-awesome-icon
                                     icon="arrow-right"
@@ -44,7 +43,7 @@
                                 />
                             </button>
                             <button
-                                class="cursor-pointer h-11 px-7 rounded-md text-[#6b26d9] font-medium border-1 border-[#6b26d9] hover:bg-[#6b26d9] hover:text-black">
+                                class="cursor-pointer h-11  text-sm px-3 md:text-base md:px-7 rounded-md text-[#6b26d9] font-medium border-1 border-[#6b26d9] hover:bg-[#6b26d9] hover:text-black">
                                 Newsletter Gratuita
                             </button>
                         </div>
