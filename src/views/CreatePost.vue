@@ -3,22 +3,22 @@
         <HeaderNav />
         <div class="w-full flex flex-col items-center pt-25">
 
-            <div class="w-9/12 h-24 items-center flex flex-row gap-8">
+            <div class=" w-10/12 md:w-9/12 h-24 items-center flex flex-row gap-8">
                 <div class="flex flex-row gap-2 items-center cursor-pointer">
                     <font-awesome-icon :icon="['fas','arrow-left']" />
                     <p class="text-sm font-medium"> Voltar</p>
                 </div>
                 <div>
                     <p
-                        class="text-3xl font-bold bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
+                        class="text-xl md:text-3xl font-bold bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
                         Criar Nova Postagem</p>
                     <p class="text-md text-[#a1a1aa]">Compartilhe suas ideias sobre tecnologia e IA</p>
                 </div>
             </div>
 
-            <div class="w-9/12 flex flex-col gap-6 p-8 mb-15 border border-[#27272a] rounded-md">
+            <div class="w-11/12 md:w-9/12 flex flex-col gap-6 p-8 mb-15 border border-[#27272a] rounded-md">
                 <p class="text-xl font-medium">Informações do Post</p>
-                <form @submit.prevent="sendPost" class="w-full flex flex-row md:flex-col gap-5 ">
+                <form @submit.prevent="sendPost" class="w-full flex flex-col gap-5 ">
                     <div class="flex flex-row gap-8">
                         <label class="w-1/2 flex flex-col text-sm font-medium gap-1">Titulo * 
                             <input
@@ -33,7 +33,7 @@
                                 v-model="categoria" 
                                 id="categoria" required
                                 class="p-2 text-sm font-normal rounded-md outline-0 border border-[#27272a] bg-[#0f0f10] cursor-pointer appearance-none">
-                                <option value="" disabled selected>Selecione uma categoria</option>
+                                <option value="" disabled selected>Categoria</option>
                                 <option value="valor1">Valor 1</option>
                                 <option value="valor2">Valor 2</option>
                                 <option value="valor3">Valor 3</option>
@@ -72,7 +72,7 @@
 </template>
 
 <script setup>
-    import { ref } from 'vue';
+import { ref } from 'vue';
 import { usePostsStore } from '@/stores/posts';
 import { useRouter } from 'vue-router';
 

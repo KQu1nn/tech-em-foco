@@ -49,5 +49,10 @@ export const usePostsStore = defineStore('posts', () => {
     return null
   }
 
-  return { posts, fetchPosts, addPost, getPostBySlug, fetchPostBySlug }
+  // Busca o post em destaque localmente
+  function getFeaturedPost() {
+    return posts.value.find(post => post.destaque === true) || null
+  }
+
+  return { posts, fetchPosts, addPost, getPostBySlug, fetchPostBySlug, getFeaturedPost }
 })
