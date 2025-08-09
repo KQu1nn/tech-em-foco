@@ -47,7 +47,7 @@
                             class="h-20 p-2 text-sm font-normal rounded-md outline-0 border border-[#27272a]"></textarea></label>
                     <label class="flex flex-col text-sm font-medium gap-1">URL da imagem
                         <input
-                            v-model="imagem"
+                            v-model="imagem_capa"
                             type="text"
                             placeholder="https://exemplo.com/imagem.jpg"
                             class="p-2 text-sm font-normal rounded-md outline-0 border border-[#27272a]"></input></label>
@@ -73,60 +73,63 @@
 
 <script setup>
     import { ref } from 'vue';
-    import { usePostsStore } from '@/stores/posts';
-    import { useRouter } from 'vue-router';
+import { usePostsStore } from '@/stores/posts';
+import { useRouter } from 'vue-router';
 
-    import HeaderNav from '@/components/HeaderNav.vue';
-    import Footer from '@/components/Footer.vue';
+import HeaderNav from '@/components/HeaderNav.vue';
+import Footer from '@/components/Footer.vue';
 
-    const titulo = ref('');
-    const categoria = ref('');
-    const resumo = ref('');
-    const imagem = ref('');
-    const conteudo = ref('');
+const titulo = ref('');
+const categoria = ref('');
+const resumo = ref('');
+const imagem_capa = ref('');
+const conteudo = ref('');
 
-    const postsStore = usePostsStore();
-    const router = useRouter();
+const postsStore = usePostsStore();
+const router = useRouter();
 
-    function gerarSlug(text) {
-    return text
-        .toLowerCase()
-        .normalize('NFD')
-        .replace(/[\u0300-\u036f]/g, '')
-        .replace(/\s+/g, '-')
-        .replace(/[^\w-]+/g, '')
-        .replace(/--+/g, '-')
-        .replace(/^-+|-+$/g, '')
-    }
+function gerarSlug(text) {
+  return text
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/[^\w-]+/g, '')
+    .replace(/--+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
 
-    function sendPost() {
-        if(!titulo.value || !categoria.value || !resumo.value || !conteudo.value) {
-            alert('Preencha todos os campos obrigatórios (*)')
-            return
-        }
+async function sendPost() {
+  if (!titulo.value || !categoria.value || !resumo.value || !conteudo.value) {
+    alert('Preencha todos os campos obrigatórios (*)');
+    return;
+  }
 
-        const novoPost = {
-            id: Date.now(),
-            titulo: titulo.value,
-            slug: gerarSlug(titulo.value),
-            categoria: categoria.value,
-            resumo: resumo.value,
-            imagemCapa: imagem.value || '',
-            conteudo: conteudo.value,
-            destaque: false,
-            visualizaçoes: 0,
-            status: 'publicado',
-            dataPublicaçao: new Date().toISOString()
-        }
+  const novoPost = {
+    titulo: titulo.value,
+    slug: gerarSlug(titulo.value),
+    categoria: categoria.value,
+    resumo: resumo.value,
+    imagem_capa: imagem_capa.value || '',
+    conteudo: conteudo.value,
+    destaque: false,
+    visualizacoes: 0,
+    status: 'publicado',
+    data_publicacao: new Date().toISOString(),
+  };
 
-        postsStore.addPost(novoPost);
+  const insertedPost = await postsStore.addPost(novoPost);
 
-        titulo.value = ''
-        categoria.value = ''
-        resumo.value = ''
-        imagem.value = ''
-        conteudo.value = ''
+  if (insertedPost) {
+    titulo.value = '';
+    categoria.value = '';
+    resumo.value = '';
+    imagem_capa.value = '';
+    conteudo.value = '';
 
-        router.push(`/post/${novoPost.slug}`)
-    }
+    router.push(`/post/${insertedPost.slug}`);
+  } else {
+    alert('Erro ao criar o post, tente novamente.');
+  }
+}
 </script>

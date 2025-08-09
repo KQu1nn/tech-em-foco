@@ -19,6 +19,7 @@
     "@fortawesome/free-regular-svg-icons": "^7.0.0",
     "@fortawesome/free-solid-svg-icons": "^7.0.0",
     "@fortawesome/vue-fontawesome": "^3.1.1",
+    "@supabase/supabase-js": "^2.54.0",
     "@tailwindcss/vite": "^4.1.11",
     "lucide": "^0.536.0",
     "lucide-vue-next": "^0.536.0",
