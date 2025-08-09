@@ -2,13 +2,13 @@
   <div class="fixed top-0 w-full z-50 flex flex-wrap justify-between items-center px-5 py-5
               bg-[#09090b]/70 backdrop-blur-md border-b border-[#27272a] text-[#e7e7e7]">
 
-    <a href="/">
+    <router-link to="/">
       <Logo />
-    </a>
+    </router-link>
 
     <ul class="hidden md:flex flex-row gap-8">
       <li v-for="(nav, i) in navs" :key="i" class="hover:text-[#6b26d9]">
-        <a :href="nav.url"> {{ nav.name }} </a>
+        <router-link :to="nav.url"> {{ nav.name }} </router-link>
       </li>
     </ul>
 
@@ -20,7 +20,7 @@
 
     <ul v-if="menuAberto" class="w-full mt-4 flex flex-col gap-4 md:hidden">
       <li v-for="(nav, i) in navs" :key="'mobile-' + i" class="hover:text-[#6b26d9]">
-        <a :href="nav.url"> {{ nav.name }} </a>
+        <router-link :to="nav.url"> {{ nav.name }} </router-link>
       </li>
     </ul>
   </div>
@@ -36,10 +36,9 @@ const menuAberto = ref(false)
 
 const navs = [
   { name: 'Início', url: '/' },
-  { name: 'IA', url: '#' },
+  { name: 'Artigos', url: '/Articles' },
   { name: 'Tech', url: '#' },
   { name: 'Tutoriais', url: '#' },
-  { name: 'Sobre', url: '/about' }
+  { name: 'Sobre', url: '#' }
 ]
 </script>
-

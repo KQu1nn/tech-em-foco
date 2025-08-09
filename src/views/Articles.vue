@@ -1,31 +1,26 @@
 <template>
-    <div class="min-h-full bg-[#09090bf8]">
-        <HeaderNav />
-        <div class="w-full pt-25 px-10 text-white">
-            <FeedCards :posts="postsStore.posts"/>
-        </div>
-        <div class="w-full px-10 pb-15 flex flex-col md:flex-row gap-8 justify-between text-white">
-            <MostPopular />
-            <PopularTags />
-        </div>
-        <Footer />
+  <div class="min-h-full bg-[#09090bf8]">
+    <HeaderNav />
+    <div class="w-full pt-25 px-10 text-white">
+      <FeedCards :posts="posts" />
     </div>
+    <div class="w-full px-10 pb-15 flex flex-col md:flex-row gap-8 justify-between text-white">
+      <MostPopular />
+      <PopularTags />
+    </div>
+    <Footer />
+  </div>
 </template>
+
 <script setup>
-import { usePostsStore } from '@/stores/posts'
 import FeedCards from '@/components/FeedCards.vue';
 import HeaderNav from '@/components/HeaderNav.vue';
 import MostPopular from '@/components/MostPopular.vue';
 import PopularTags from '@/components/PopularTags.vue';
 import Footer from '@/components/Footer.vue';
 
-const postsStore = usePostsStore()
-postsStore.loadPosts()
+import { usePostsStore } from '@/stores/posts';
 
-defineProps({
-  posts: {
-    type: Array,
-    required: true
-  }
-})
+const postsStore = usePostsStore();
+const posts = postsStore.posts;
 </script>

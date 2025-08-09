@@ -7,11 +7,11 @@
 
     <div class="w-full justify-center md:justify-normal flex flex-row flex-wrap gap-8 pb-16">
       <!-- Articles -->
-      <router-link
+      <div
         v-for="(post, i) in posts"
         :key="post.id"
-        :to="`/post/${post.slug}`"
-        class="w-11/12 md:w-72 cursor-pointer border border-[#27272a] rounded-md no-underline hover:no-underline"
+        class="w-11/12 md:w-72 cursor-pointer border border-[#27272a] rounded-md"
+        @click="goToPost(post.slug)"
       >
         <div class="w-full h-48 flex justify-center items-center bg-purple-700 rounded-t-md">
           <img
@@ -39,20 +39,36 @@
               {{ post.resumo }}
             </p>
           </div>
+          <router-link
+            :to="`/post/${post.slug}`"
+            class="inline-flex text-purple-700 cursor-pointer transition hover:brightness-110 items-center gap-1 text-start"
+            @click.stop
+          >
+            Ler mais
+            <font-awesome-icon icon="arrow-right" style="width: 14px; height: 14px" />
+          </router-link>
         </div>
-      </router-link>
+      </div>
     </div>
   </div>
 </template>
 
 
 <script setup>
+import { useRouter } from 'vue-router'
+
 defineProps({
   posts: {
     type: Array,
     required: true
   }
 })
+
+const router = useRouter()
+
+function goToPost(slug) {
+  router.push(`/post/${slug}`)
+}
 
 const formatDate = (dateStr) => {
   if (!dateStr) return 'Data inválida'
