@@ -7,9 +7,9 @@ import App from './App.vue'
 import router from './router'
 import { FontAwesomeIcon } from './plugins/fontawesome'
 
-const app = createApp(App)   // ← Primeiro cria o app
+const app = createApp(App)   
 const pinia = createPinia()
-app.use(router)              // ← Depois usa o router
+app.use(router)              
 app.component('font-awesome-icon', FontAwesomeIcon)
 app.use(pinia)
-app.mount('#app')           // ← Por fim, monta na #app
+app.mount('#app')           

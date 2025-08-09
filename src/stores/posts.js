@@ -3,17 +3,29 @@ import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
 export const usePostsStore = defineStore('posts', () => {
-  const posts = ref([])
+  const posts = ref([
+    {
+      id: 1,
+      slug: 'introducao-ao-vuejs',
+      titulo: 'Introdução ao VueJS',
+      categoria: 'Frontend',
+      resumo: 'Um guia rápido para começar no VueJS.',
+      imagemCapa: '',
+      conteudo: '<p>Conteúdo do post...</p>',
+      destaque: true,
+      visualizacoes: 153,
+      status: 'publicado',
+      dataPublicacao: '2025-08-08T14:30:00Z'
+    }
+  ])
 
-  function loadPosts() {
-    // busca do Supabase ou mock
-    posts.value = [
-        { id: 1, titulo: 'O Futuro da Inteligência Artificial: Tendências para 2024', conteudo: 'Explore as principais tendências em IA que estão moldando o futuro da tecnologia' },
-        { id: 2, titulo: 'Computação Quântica: A Próxima Fronteira', conteudo: 'Uma introdução ao mundo da computação quântica e seu potencial revolucionário.' },
-        { id: 3, titulo: 'Computação Quântica: A Próxima Fronteira', conteudo: 'Uma introdução ao mundo da computação quântica e seu potencial revolucionário.' },
-        { id: 4, titulo: 'Computação Quântica: A Próxima Fronteira', conteudo: 'Uma introdução ao mundo da computação quântica e seu potencial revolucionário.' }
-    ]
+  function getPostBySlug(slug) {
+    return posts.value.find(post => post.slug === slug) || null
   }
 
-  return { posts, loadPosts }
+  function addPost(novoPost) {
+    posts.value.push(novoPost)
+  }
+
+  return { posts, getPostBySlug, addPost }
 })

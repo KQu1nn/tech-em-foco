@@ -20,6 +20,8 @@
     <Footer />
 </template>
 <script setup>
+import { usePostsStore } from '@/stores/posts';
+
 import Categories from './Categories.vue';
 import FeaturedArticle from './FeaturedArticle.vue';
 import FeedCards from './FeedCards.vue';
@@ -27,6 +29,12 @@ import Footer from './Footer.vue';
 import MostPopular from './MostPopular.vue';
 import Newsletter from './Newsletter.vue';
 import PopularTags from './PopularTags.vue';
+
+import { computed } from 'vue'
+
+const postsStore = usePostsStore()
+const posts = computed(() => postsStore.posts)
+
 
 defineProps({
     posts: {

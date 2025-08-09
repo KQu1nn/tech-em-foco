@@ -3,7 +3,7 @@
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-import { faArrowRight, faSearch, faRss, faArrowTrendUp, faHeart, faBars } from '@fortawesome/free-solid-svg-icons'
+import { faArrowRight, faSearch, faRss, faArrowTrendUp, faArrowLeft, faHeart, faBars } from '@fortawesome/free-solid-svg-icons'
 import { faEnvelope as faEnvelopeRegular, faHeart as faHeartRegular, faCalendar, faClock } from '@fortawesome/free-regular-svg-icons'
 import {
   faXTwitter,
@@ -17,7 +17,7 @@ library.add(
   faXTwitter, faGithub, faInstagram, faFacebook,
   faRss, faSearch, faArrowRight, faEnvelopeRegular,
   faCalendar, faClock, faBars, faArrowTrendUp,
-  faHeart, faHeartRegular
+  faHeart, faHeartRegular, faArrowLeft
 )
 
 export { FontAwesomeIcon }

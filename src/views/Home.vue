@@ -9,7 +9,6 @@ import Hero from '@/components/Hero.vue';
 import MainLayout from '@/components/MainLayout.vue';
 
 const postsStore = usePostsStore()
-postsStore.loadPosts()
 
 </script>
 
