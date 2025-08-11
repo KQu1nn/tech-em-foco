@@ -8,7 +8,7 @@
 
     <router-link
       :to="`/post/${featuredPost.slug}`"
-      class="w-11/12 md:w-4/6 border border-[#1f133d] rounded-lg cursor-pointer hover:shadow-lg transition-shadow"
+      class=" w-11/12 md:w-4/6 border border-[#1f133d] rounded-lg cursor-pointer hover:shadow-lg transition-shadow"
     >
       <div class="h-48 w-full rounded-t-lg flex justify-center items-center bg-purple-700 overflow-hidden">
         <img
