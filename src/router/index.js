@@ -22,12 +22,16 @@ const router = createRouter({
   routes,
 })
 
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to) => {
   const userStore = useUserStore()
+  
   if (to.meta.requiresAuth && !userStore.user) {
-    next('/login')
-  } else {
-    next()
+    const { data: { session } } = await supabase.auth.getSession()
+    if (session?.user) {
+      userStore.setUser(session.user)
+    } else {
+      return '/login'
+    }
   }
 })
 
