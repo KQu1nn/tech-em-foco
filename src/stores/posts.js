@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
-import { supabase } from '@/supabase.js' // ajuste o caminho conforme seu projeto
+import { supabase } from '@/supabase.js'
 
 export const usePostsStore = defineStore('posts', () => {
   const posts = ref([])
