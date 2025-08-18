@@ -1,5 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import { useUserStore } from '@/stores/user'
+import { supabase } from '@/supabase'
 
 import Home from '@/views/Home.vue'
 import Articles from '@/views/Articles.vue'
@@ -12,7 +13,7 @@ import About from '@/views/About.vue'
 const routes = [
   { path: '/', component: Home },
   { path: '/articles', component: Articles },
-  { path: '/create-post', component: CreatePost, meta: { requiresAuth: true } },
+  { path: '/create-post', name: 'create-post', component: CreatePost, meta: { requiresAuth: true } },
   { path: '/post/:slug', name: 'post-view', component: PostView, props: true },
   { path: '/login', component: Login },
   { path: '/Dashboard', component: Dashboard, meta: { requiresAuth: true } },
@@ -22,9 +23,13 @@ const routes = [
 const router = createRouter({
   history: createWebHashHistory(),
   routes,
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition
+    }
+    return { top: 0 }
+  }
 })
-
-import { supabase } from '@/supabase' // Certifique-se que está importado
 
 router.beforeEach(async (to, from, next) => {
   const userStore = useUserStore()

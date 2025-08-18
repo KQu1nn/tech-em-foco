@@ -91,7 +91,7 @@
             </div>
             <div class=" w-full text-center flex flex-col items-center gap-6 py-16">
                 <h1 class="text-3xl font-bold ">Junte-se a Nossa Comunidade</h1>
-                <p class="text-xl text-[#a1a1aa] w-9/12">Faça parte de uma comunidade apaixonada por tecnologia e IA.<br> Compartilhe conhecimento, tire dúvidas e acompanhe as últimas novidades.</p>
+                <p class=" md:text-xl text-[#a1a1aa] md:w-9/12">Faça parte de uma comunidade apaixonada por tecnologia e IA.<br> Compartilhe conhecimento, tire dúvidas e acompanhe as últimas novidades.</p>
                 <ul class="flex flex-col md:flex-row gap-4">
                     <li class="border border-[#3e3e42] rounded-full px-4 py-2">🤖 Entusiastas de IA</li>
                     <li class="border border-[#3e3e42] rounded-full px-4 py-2">💻 Desenvolvedores</li>
@@ -107,11 +107,6 @@
 <script setup>
 import HeaderNav from '@/components/HeaderNav.vue';
 import Footer from '@/components/Footer.vue';
-import { Target } from "lucide-vue-next"
-import { Lightbulb } from "lucide-vue-next"
-import { Brain } from 'lucide-vue-next'
-import { Code } from 'lucide-vue-next'
-import { Rocket } from 'lucide-vue-next'
-import { Users } from 'lucide-vue-next'
+import { Target, Lightbulb, Brain, Code, Rocket, Users } from "lucide-vue-next"
 
 </script>

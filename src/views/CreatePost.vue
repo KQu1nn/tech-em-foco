@@ -6,7 +6,7 @@
             <div class=" w-10/12 md:w-9/12 h-24 items-center flex flex-row gap-8">
                 <div class="flex flex-row gap-2 items-center cursor-pointer">
                     <font-awesome-icon :icon="['fas','arrow-left']" />
-                    <p class="text-sm font-medium"> Voltar</p>
+                    <p @click="router.back()" class="text-sm font-medium"> Voltar</p>
                 </div>
                 <div>
                     <p

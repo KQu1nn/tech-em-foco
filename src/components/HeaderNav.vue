@@ -37,8 +37,8 @@ const menuAberto = ref(false)
 const navs = [
   { name: 'Início', url: '/' },
   { name: 'Artigos', url: '/Articles' },
-  { name: 'Tech', url: '#' },
-  { name: 'Tutoriais', url: '#' },
+  //{ name: 'Tech', url: '#' },
+  //{ name: 'Tutoriais', url: '#' },
   { name: 'Sobre', url: '/About' }
 ]
 </script>

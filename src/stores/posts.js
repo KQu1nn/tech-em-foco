@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { supabase } from '@/supabase.js'
 
 export const usePostsStore = defineStore('posts', () => {
@@ -27,12 +27,10 @@ export const usePostsStore = defineStore('posts', () => {
     return null
   }
 
-  // Busca local pelo slug
   function getPostBySlug(slug) {
     return posts.value.find(post => post.slug === slug) || null
   }
 
-  // Busca no Supabase caso não ache localmente
   async function fetchPostBySlug(slug) {
     const { data, error } = await supabase
       .from('posts')
@@ -41,7 +39,6 @@ export const usePostsStore = defineStore('posts', () => {
       .single()
 
     if (!error) {
-      // Opcional: adiciona no array local
       const exists = posts.value.find(p => p.id === data.id)
       if (!exists) posts.value.push(data)
       return data
@@ -49,10 +46,10 @@ export const usePostsStore = defineStore('posts', () => {
     return null
   }
 
-  // Busca o post em destaque localmente
   function getFeaturedPost() {
     return posts.value.find(post => post.destaque === true) || null
   }
+  const postsCount = computed(() => posts.value.length)
 
-  return { posts, fetchPosts, addPost, getPostBySlug, fetchPostBySlug, getFeaturedPost }
+  return { posts, fetchPosts, addPost, getPostBySlug, fetchPostBySlug, getFeaturedPost, postsCount }
 })
