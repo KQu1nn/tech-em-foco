@@ -38,7 +38,7 @@ const navs = [
   { name: 'Início', url: '/' },
   { name: 'Artigos', url: '/Articles' },
   //{ name: 'Tech', url: '#' },
-  //{ name: 'Tutoriais', url: '#' },
+  { name: 'Tutoriais', url: '/categoria/Tutoriais' },
   { name: 'Sobre', url: '/About' }
 ]
 </script>
