@@ -31,12 +31,10 @@
                             Categoria *
                             <select
                                 v-model="categoria" 
-                                id="categoria" required
+                                required
                                 class="p-2 text-sm font-normal rounded-md outline-0 border border-[#27272a] bg-[#0f0f10] cursor-pointer appearance-none">
                                 <option value="" disabled selected>Categoria</option>
-                                <option value="valor1">Valor 1</option>
-                                <option value="valor2">Valor 2</option>
-                                <option value="valor3">Valor 3</option>
+                                <option v-for="cat in categoryStore.categories" :key="cat.id" :value="cat.nome">{{ cat.nome }}</option>
                             </select>
                         </label>
                     </div>
@@ -75,10 +73,14 @@
 import { ref } from 'vue';
 import { usePostsStore } from '@/stores/posts';
 import { useRouter } from 'vue-router';
+import { onMounted } from 'vue';
+import { useCategoryStore } from '@/stores/category.js';
 
 import HeaderNav from '@/components/HeaderNav.vue';
 import Footer from '@/components/Footer.vue';
 
+
+const categoryStore = useCategoryStore();
 const titulo = ref('');
 const categoria = ref('');
 const resumo = ref('');
@@ -132,4 +134,8 @@ async function sendPost() {
     alert('Erro ao criar o post, tente novamente.');
   }
 }
+
+onMounted(() => {
+  categoryStore.fetchCategories();
+});
 </script>

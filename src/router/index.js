@@ -18,6 +18,8 @@ const routes = [
   { path: '/login', component: Login },
   { path: '/Dashboard', component: Dashboard, meta: { requiresAuth: true } },
   { path: '/about', component: About },
+  { path: '/categoria/:categoria', name: 'CategoryView', component: () => import('@/views/CategoryView.vue')
+}
 ]
 
 const router = createRouter({

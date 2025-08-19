@@ -1,58 +1,61 @@
 <template>
-    <div class="w-full flex flex-col bg-[#09090b] text-white pt-25 pb-10">
-        <HeaderNav />
-        <div class="w-11/12 md:w-9/12 mx-auto">
+  <div class="w-full flex flex-col bg-[#09090b] text-white pt-25 pb-10">
+    <HeaderNav />
+    <div class="w-11/12 md:w-9/12 mx-auto">
 
-            <div class="w-full pt-6 items-center flex flex-row justify-between text-[#a1a1aa]">
-                <div class="flex flex-row gap-1 items-center cursor-pointer">
-                    <font-awesome-icon :icon="['fas', 'arrow-left']" />
-                    <p class="text-sm font-medium">Voltar</p>
-                </div>
-                <button
-                    class="text-sm font-medium px-3 py-2 cursor-pointer flex flex-row items-center border rounded border-[#27272a] gap-2">
-                    <font-awesome-icon icon="share-alt" />
-                    <p>Compartilhar</p>
-                </button>
-            </div>
-
-            <div class="flex flex-row gap-5 py-8 text-sm text-[#a1a1aa]">
-                <p
-                    class="border border-[#6b26d9] font-medium px-3 py-0.5 rounded-2xl text-xs text-[#6b26d9] bg-[#130c20] cursor-pointer">
-                    IA
-                </p>
-                <p class="flex flex-row gap-1 items-center">
-                    <font-awesome-icon :icon="['far', 'calendar']" class="rounded" />
-                    15 de Janeiro, 2024
-                </p>
-                <p class="flex flex-row gap-1 items-center">
-                    <font-awesome-icon :icon="['far', 'clock']" class="rounded" />
-                    8 min
-                </p>
-            </div>
-            <div v-if="post" class="w-full  flex flex-col gap-6 pb-2">
-                <h1
-                    class="text-3xl md:text-5xl font-bold bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
-                    {{ post.titulo }}
-                </h1>
-                <p class="text-xl text-[#a1a1aa]">
-                    {{ post.resumo }}
-                </p>
-
-                <div class="w-full">
-                    <div class="w-full h-auto bg-blue-700 border-0 rounded-2xl">
-                        <img :src="post.imagem_capa" class="rounded-2xl w-full" />
-                    </div>
-
-                    <div class="post-content py-8" v-html="conteudoHtml"></div>
-                </div>
-            </div>
-            <div v-else>
-                <p>Post não encontrado.</p>
-            </div>
+      <div class="w-full pt-6 items-center flex flex-row justify-between text-[#a1a1aa]">
+        <div @click="goBack" class="flex flex-row gap-1 items-center cursor-pointer">
+          <font-awesome-icon :icon="['fas', 'arrow-left']" />
+          <p class="text-sm font-medium">Voltar</p>
         </div>
+        <button
+          class="text-sm font-medium px-3 py-2 cursor-pointer flex flex-row items-center border rounded border-[#27272a] gap-2">
+          <font-awesome-icon icon="share-alt" />
+          <p>Compartilhar</p>
+        </button>
+      </div>
+
+      <!-- Só renderiza detalhes do post se post existir -->
+      <div v-if="post" class="flex flex-row gap-5 py-8 text-sm text-[#a1a1aa]">
+        <p
+          class="border border-[#6b26d9] font-medium px-3 py-0.5 rounded-2xl text-xs text-[#6b26d9] bg-[#130c20] cursor-pointer">
+          {{ post.categoria }}
+        </p>
+        <p class="flex flex-row gap-1 items-center">
+          <font-awesome-icon :icon="['far', 'calendar']" class="rounded" />
+          15 de Janeiro, 2024
+        </p>
+        <p class="flex flex-row gap-1 items-center">
+          <font-awesome-icon :icon="['far', 'clock']" class="rounded" />
+          8 min
+        </p>
+      </div>
+
+      <div v-if="post" class="w-full flex flex-col gap-6 pb-2">
+        <h1
+          class="text-3xl md:text-5xl font-bold bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
+          {{ post.titulo }}
+        </h1>
+        <p class="text-xl text-[#a1a1aa]">
+          {{ post.resumo }}
+        </p>
+
+        <div class="w-full">
+          <div class="w-full h-auto bg-blue-700 border-0 rounded-2xl">
+            <img :src="post.imagem_capa" class="rounded-2xl w-full" />
+          </div>
+
+          <div class="post-content py-8" v-html="conteudoHtml"></div>
+        </div>
+      </div>
+
+      <div v-else>
+        <p>Carregando post...</p>
+      </div>
 
     </div>
-    <Footer />
+  </div>
+  <Footer />
 </template>
 
 <script setup>
@@ -71,6 +74,10 @@
 
     const post = ref(null)
     const conteudoHtml = ref('')
+
+    function goBack() {
+        router.back()
+    }
 
     async function loadPost(slug) {
 
