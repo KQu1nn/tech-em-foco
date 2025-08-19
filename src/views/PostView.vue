@@ -1,24 +1,29 @@
 <template>
   <div class="w-full flex flex-col bg-[#09090b] text-white pt-25 pb-10">
     <HeaderNav />
+
     <div class="w-11/12 md:w-9/12 mx-auto">
 
-      <div class="w-full pt-6 items-center flex flex-row justify-between text-[#a1a1aa]">
+      <div class="w-full pt-6 flex flex-row justify-between text-[#a1a1aa] items-center">
         <div @click="goBack" class="flex flex-row gap-1 items-center cursor-pointer">
           <font-awesome-icon :icon="['fas', 'arrow-left']" />
           <p class="text-sm font-medium">Voltar</p>
         </div>
-        <button
-          class="text-sm font-medium px-3 py-2 cursor-pointer flex flex-row items-center border rounded border-[#27272a] gap-2">
-          <font-awesome-icon icon="share-alt" />
-          <p>Compartilhar</p>
-        </button>
+
+        <div class="flex flex-col gap-2 items-center">
+          <button
+            class="text-sm font-medium px-3 py-2 flex flex-row items-center border rounded border-[#27272a] gap-2 cursor-pointer">
+            <font-awesome-icon icon="share-alt" />
+            <p>Compartilhar</p>
+          </button>
+          <p v-if="post" class="text-sm text-[#a1a1aa]">
+            Visualizações: {{ post.views || 0 }}
+          </p>
+        </div>
       </div>
 
-      <!-- Só renderiza detalhes do post se post existir -->
       <div v-if="post" class="flex flex-row gap-5 py-8 text-sm text-[#a1a1aa]">
-        <p
-          class="border border-[#6b26d9] font-medium px-3 py-0.5 rounded-2xl text-xs text-[#6b26d9] bg-[#130c20] cursor-pointer">
+        <p class="border border-[#6b26d9] font-medium px-3 py-0.5 rounded-2xl text-xs text-[#6b26d9] bg-[#130c20] cursor-pointer">
           {{ post.categoria }}
         </p>
         <p class="flex flex-row gap-1 items-center">
@@ -32,13 +37,10 @@
       </div>
 
       <div v-if="post" class="w-full flex flex-col gap-6 pb-2">
-        <h1
-          class="text-3xl md:text-5xl font-bold bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
+        <h1 class="text-3xl md:text-5xl font-bold bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
           {{ post.titulo }}
         </h1>
-        <p class="text-xl text-[#a1a1aa]">
-          {{ post.resumo }}
-        </p>
+        <p class="text-xl text-[#a1a1aa]">{{ post.resumo }}</p>
 
         <div class="w-full">
           <div class="w-full h-auto bg-blue-700 border-0 rounded-2xl">
@@ -52,63 +54,65 @@
       <div v-else>
         <p>Carregando post...</p>
       </div>
-
     </div>
   </div>
+
   <Footer />
 </template>
 
 <script setup>
-    import { ref, watch, onMounted } from 'vue'
-    import { useRoute, useRouter } from 'vue-router'
-    import { usePostsStore } from '@/stores/posts'
-    import { marked } from 'marked'
+import { ref, watch, onMounted } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import { usePostsStore } from '@/stores/posts'
+import { marked } from 'marked'
 
-    import HeaderNav from '@/components/HeaderNav.vue'
-    import Footer from '@/components/Footer.vue'
+import HeaderNav from '@/components/HeaderNav.vue'
+import Footer from '@/components/Footer.vue'
 
+const route = useRoute()
+const router = useRouter()
+const postsStore = usePostsStore()
 
-    const route = useRoute()
-    const router = useRouter()
-    const postsStore = usePostsStore()
+const post = ref(null)
+const conteudoHtml = ref('')
 
-    const post = ref(null)
-    const conteudoHtml = ref('')
+function goBack() {
+  router.back()
+}
 
-    function goBack() {
-        router.back()
+async function loadPost(slug) {
+  if (!slug) return
+
+  post.value = postsStore.getPostBySlug(slug)
+
+  if (!post.value) {
+    const fetchedPost = await postsStore.fetchPostBySlug(slug)
+    if (fetchedPost) post.value = fetchedPost
+    else {
+      router.push('/')
+      return
     }
+  }
 
-    async function loadPost(slug) {
+  conteudoHtml.value = post.value.conteudo ? marked.parse(post.value.conteudo) : ''
 
-        post.value = postsStore.getPostBySlug(slug)
-
-        if (!post.value) {
-
-            const fetchedPost = await postsStore.fetchPostBySlug(slug)
-            if (fetchedPost) {
-                post.value = fetchedPost
-            } else {
-                router.push('/')
-                return
-            }
-        }
-
-        if (post.value.conteudo) {
-            conteudoHtml.value = marked.parse(post.value.conteudo)
-        } else {
-            conteudoHtml.value = ''
-        }
+  if (post.value?.id) {
+    const updatedViews = await postsStore.incrementViews(post.value.id)
+    if (updatedViews !== null) {
+      post.value.views = updatedViews
     }
+  }
+}
 
+defineProps({ slug: String })
 
-    watch(() => route.params.slug, (slug) => {
-        loadPost(slug)
-    })
+watch(() => route.params.slug, (slug) => {
+  loadPost(slug)
+})
 
-    onMounted(() => {
-        loadPost(route.params.slug)
-    })
+onMounted(() => {
+  loadPost(route.params.slug)
+})
 </script>
 
 <style scoped>

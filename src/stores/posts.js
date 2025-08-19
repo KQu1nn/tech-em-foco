@@ -51,5 +51,43 @@ export const usePostsStore = defineStore('posts', () => {
   }
   const postsCount = computed(() => posts.value.length)
 
-  return { posts, fetchPosts, addPost, getPostBySlug, fetchPostBySlug, getFeaturedPost, postsCount }
+
+  async function incrementViews(postId) {
+  try {
+    
+    const { error } = await supabase.rpc('increment_post_views', {
+      post_id: postId
+    });
+
+    if (error) {
+      console.error('Erro ao incrementar views:', error);
+      throw error;
+    }
+
+
+    const { data: updatedPost, error: fetchError } = await supabase
+      .from('posts')
+      .select('views')
+      .eq('id', postId)
+      .single();
+
+    if (fetchError) {
+      throw fetchError;
+    }
+
+    const postIndex = posts.value.findIndex(p => p.id === postId);
+    if (postIndex !== -1) {
+      posts.value[postIndex].views = updatedPost.views;
+    }
+
+    return updatedPost.views;
+
+  } catch (error) {
+    console.error('Erro completo:', error);
+    return null;
+  }
+}
+
+
+  return { posts, fetchPosts, addPost, getPostBySlug, fetchPostBySlug, getFeaturedPost, postsCount, incrementViews }
 })

@@ -115,7 +115,7 @@ async function sendPost() {
     imagem_capa: imagem_capa.value || '',
     conteudo: conteudo.value,
     destaque: false,
-    visualizacoes: 0,
+    views: 0,
     status: 'publicado',
     data_publicacao: new Date().toISOString(),
   };
