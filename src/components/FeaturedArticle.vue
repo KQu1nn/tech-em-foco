@@ -8,14 +8,14 @@
 
     <router-link
       :to="`/post/${featuredPost.slug}`"
-      class=" w-11/12 md:w-4/6 border border-[#1f133d] rounded-lg cursor-pointer hover:shadow-lg transition-shadow"
+      class="w-11/12 md:w-4/6 border border-[#1f133d] rounded-lg cursor-pointer group hover:shadow-lg transition-shadow"
     >
       <div class="h-48 w-full rounded-t-lg flex justify-center items-center bg-purple-700 overflow-hidden">
         <img
           v-if="featuredPost.imagem_capa"
           :src="featuredPost.imagem_capa"
           alt="Imagem do artigo"
-          class="h-48 w-full object-cover rounded-t-lg"
+          class="h-48 w-full object-cover rounded-t-lg transition-transform duration-300 ease-in-out transform group-hover:scale-105"
         />
         <div v-else class="text-white">Sem imagem</div>
       </div>
@@ -33,7 +33,9 @@
         </div>
 
         <div class="flex flex-col gap-3">
-          <h2 class="text-xl font-medium hover:text-purple-700">{{ featuredPost.titulo }}</h2>
+          <h2 class="text-xl font-medium text-white transition-colors duration-300 group-hover:text-purple-700">
+            {{ featuredPost.titulo }}
+          </h2>
           <p class="text-[#a1a1aa]">{{ featuredPost.resumo }}</p>
         </div>
 
@@ -51,6 +53,7 @@
     Nenhum artigo em destaque no momento.
   </div>
 </template>
+
 
 
 <script setup>

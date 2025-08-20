@@ -6,20 +6,15 @@
     </h1>
 
     <div class="w-full justify-center md:justify-normal flex flex-row flex-wrap gap-8 pb-16">
-      <!-- Articles -->
-      <div
-        v-for="(post, i) in posts"
-        :key="post.id"
-        class="w-11/12 md:w-72 cursor-pointer border border-[#27272a] rounded-md"
-        @click="goToPost(post.slug)"
-      >
-        <div class="w-full h-48 flex justify-center items-center bg-purple-700 rounded-t-md">
+      <div v-for="(post, i) in posts" :key="post.id"
+        class="w-11/12 md:w-72 cursor-pointer border border-[#27272a] rounded-md group" @click="goToPost(post.slug)">
+        <div class="w-full h-48 flex justify-center items-center bg-purple-700 rounded-t-md overflow-hidden">
           <img
             :src="post.imagem_capa || 'https://blog.marcusoliveiradev.com.br/wp-content/uploads/2022/11/pexels-luis-gomes-546819-1.jpg'"
             alt="Capa do post"
-            class="w-full h-full object-cover rounded-t-md"
-          />
+            class="w-full h-full object-cover rounded-t-md transition-transform duration-300 ease-in-out transform group-hover:scale-105" />
         </div>
+
         <div class="p-6 flex flex-col gap-3">
           <div class="flex flex-row gap-3 text-[#a1a1aa]">
             <p class="flex flex-row gap-1 items-center text-sm">
@@ -31,19 +26,19 @@
               8 min
             </p>
           </div>
+
           <div class="flex flex-col gap-3">
-            <h2 class="text-xl text-white font-medium hover:text-purple-700">
+            <h2 class="text-xl text-white font-medium transition-colors duration-300 group-hover:text-purple-700">
               {{ post.titulo }}
             </h2>
             <p class="text-[#a1a1aa]">
               {{ post.resumo.length > 210 ? post.resumo.slice(0, 150) + '...' : post.resumo }}
             </p>
           </div>
-          <router-link
-            :to="`/post/${post.slug}`"
+
+          <router-link :to="`/post/${post.slug}`"
             class="inline-flex text-purple-700 cursor-pointer transition hover:brightness-110 items-center gap-1 text-start"
-            @click.stop
-          >
+            @click.stop>
             Ler mais
             <font-awesome-icon icon="arrow-right" style="width: 14px; height: 14px" />
           </router-link>
@@ -52,6 +47,7 @@
     </div>
   </div>
 </template>
+
 
 
 <script setup>
