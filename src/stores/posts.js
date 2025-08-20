@@ -46,6 +46,19 @@ export const usePostsStore = defineStore('posts', () => {
     return null
   }
 
+  async function delPost(postToDelete) {
+    const postId = postToDelete.id;
+
+    const { data, error } = await supabase.from('posts').delete().eq('id', postId)
+
+    if (!error) {
+      console.log('Postagem removida com sucesso', data);
+      posts.value = posts.value.filter(p => p.id !== postToDelete.id)
+    } else {
+      console.error('Erro ao excluir postagem:', error);
+    }
+  }
+
   function getFeaturedPost() {
     return posts.value.find(post => post.destaque === true) || null
   }
@@ -53,41 +66,41 @@ export const usePostsStore = defineStore('posts', () => {
 
 
   async function incrementViews(postId) {
-  try {
-    
-    const { error } = await supabase.rpc('increment_post_views', {
-      post_id: postId
-    });
+    try {
 
-    if (error) {
-      console.error('Erro ao incrementar views:', error);
-      throw error;
+      const { error } = await supabase.rpc('increment_post_views', {
+        post_id: postId
+      });
+
+      if (error) {
+        console.error('Erro ao incrementar views:', error);
+        throw error;
+      }
+
+
+      const { data: updatedPost, error: fetchError } = await supabase
+        .from('posts')
+        .select('views')
+        .eq('id', postId)
+        .single();
+
+      if (fetchError) {
+        throw fetchError;
+      }
+
+      const postIndex = posts.value.findIndex(p => p.id === postId);
+      if (postIndex !== -1) {
+        posts.value[postIndex].views = updatedPost.views;
+      }
+
+      return updatedPost.views;
+
+    } catch (error) {
+      console.error('Erro completo:', error);
+      return null;
     }
-
-
-    const { data: updatedPost, error: fetchError } = await supabase
-      .from('posts')
-      .select('views')
-      .eq('id', postId)
-      .single();
-
-    if (fetchError) {
-      throw fetchError;
-    }
-
-    const postIndex = posts.value.findIndex(p => p.id === postId);
-    if (postIndex !== -1) {
-      posts.value[postIndex].views = updatedPost.views;
-    }
-
-    return updatedPost.views;
-
-  } catch (error) {
-    console.error('Erro completo:', error);
-    return null;
   }
-}
 
 
-  return { posts, fetchPosts, addPost, getPostBySlug, fetchPostBySlug, getFeaturedPost, postsCount, incrementViews }
+  return { posts, fetchPosts, addPost, getPostBySlug, fetchPostBySlug, getFeaturedPost, postsCount, incrementViews, delPost }
 })
