@@ -28,7 +28,7 @@ export const useCategoryStore = defineStore("Category", () => {
 
   async function delCategory(categoryToDelete) {
     const categoryId = categoryToDelete.id;
-    const {data, error } = await supabase.from("categories").delete().eq('id', categoryId).select();
+    const {data, error } = await supabase.from("categories").delete().eq('id', categoryId);
     if(!error) {
       console.log(`Categoria deletado`);
       categories.value = categories.value.filter(cat => cat.id !== categoryId);
@@ -36,5 +36,6 @@ export const useCategoryStore = defineStore("Category", () => {
       console.error(error);
     }
   }
+
   return { categories, fetchCategories, addNewCategory, delCategory };
 });

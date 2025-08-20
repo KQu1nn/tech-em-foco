@@ -4,6 +4,7 @@ import { supabase } from '@/supabase.js'
 
 export const usePostsStore = defineStore('posts', () => {
   const posts = ref([])
+  const mostPopular = ref([])
 
   async function fetchPosts() {
     const { data, error } = await supabase
@@ -12,6 +13,16 @@ export const usePostsStore = defineStore('posts', () => {
       .order('data_publicacao', { ascending: false })
 
     if (!error) posts.value = data
+  }
+
+  async function fetchMostPopular() {
+    const { data, error } = await supabase.from("posts").select("*").order("views", {ascending: false}).limit(5);
+
+    if(!error) {
+      mostPopular.value = data;
+    } else {
+      console.error(`Erro ao buscar posts populares`,error)
+    }
   }
 
   async function addPost(newPost) {
@@ -102,5 +113,5 @@ export const usePostsStore = defineStore('posts', () => {
   }
 
 
-  return { posts, fetchPosts, addPost, getPostBySlug, fetchPostBySlug, getFeaturedPost, postsCount, incrementViews, delPost }
+  return { posts, fetchPosts, mostPopular, fetchMostPopular, addPost, getPostBySlug, fetchPostBySlug, getFeaturedPost, postsCount, incrementViews, delPost }
 })

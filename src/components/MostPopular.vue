@@ -6,27 +6,36 @@
             Mais Populares
         </h1>
         <div class="flex flex-col divide-y divide-[#27272a]">
-            <div class="py-5 flex flex-col gap-1">
-                <p class="font-medium text-sm">Introdução ao Deep Learning</p>
+            <router-link :to="`/post/${post.slug}`" v-for="post in postsStore.mostPopular" :key="post.id" class="py-5 flex flex-col gap-1">
+                <p class="font-medium text-sm">{{ post.titulo }}</p>
                 <div class="flex flex-row justify-between items-center text-[#a1a1aa] text-xs">
-                    <p>14 Jan 2024</p>
-                    <p>12.5K visualizações</p>
+                    <p>{{ formatDate(post.data_publicacao) }}</p>
+                    <p>{{ formatViews(post.views) }}</p>
                 </div>
-            </div>
-            <div class="py-5">
-                <p class="font-medium text-sm">Introdução ao Deep Learning</p>
-                <div class="flex flex-row justify-between items-center text-[#a1a1aa] text-xs">
-                    <p>14 Jan 2024</p>
-                    <p>12.5K visualizações</p>
-                </div>
-            </div>
-            <div class="py-5">
-                <p class="font-medium text-sm">Introdução ao Deep Learning</p>
-                <div class="flex flex-row justify-between items-center text-[#a1a1aa] text-xs">
-                    <p>14 Jan 2024</p>
-                    <p>12.5K visualizações</p>
-                </div>
-            </div>
+            </router-link>
         </div>
     </div>
 </template>
+<script setup>
+import { onMounted } from 'vue';
+import { usePostsStore } from '@/stores/posts';
+
+const postsStore = usePostsStore()
+
+function formatViews(views) {
+  if (views >= 1_000_000) return (views / 1_000_000).toFixed(1) + 'M'
+  if (views >= 1_000) return (views / 1_000).toFixed(1) + 'K'
+  return views.toString()
+}
+function formatDate(dateString) {
+  const date = new Date(dateString)
+  return new Intl.DateTimeFormat("pt-BR", {
+    day: "2-digit",
+    month: "short",
+    year: "numeric"
+  }).format(date)
+}
+onMounted(async() => {
+    await postsStore.fetchMostPopular();
+})
+</script>
