@@ -36,7 +36,7 @@
               {{ post.titulo }}
             </h2>
             <p class="text-[#a1a1aa]">
-              {{ post.resumo }}
+              {{ post.resumo.length > 210 ? post.resumo.slice(0, 150) + '...' : post.resumo }}
             </p>
           </div>
           <router-link

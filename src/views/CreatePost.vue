@@ -4,9 +4,9 @@
         <div class="w-full flex flex-col items-center pt-25">
 
             <div class=" w-10/12 md:w-9/12 h-24 items-center flex flex-row gap-8">
-                <div class="flex flex-row gap-2 items-center cursor-pointer">
+                <div @click="router.back()" class="flex flex-row gap-2 items-center cursor-pointer">
                     <font-awesome-icon :icon="['fas','arrow-left']" />
-                    <p @click="router.back()" class="text-sm font-medium"> Voltar</p>
+                    <p  class="text-sm font-medium"> Voltar</p>
                 </div>
                 <div>
                     <p
@@ -16,8 +16,11 @@
                 </div>
             </div>
 
-            <div class="w-11/12 md:w-9/12 flex flex-col gap-6 p-8 mb-15 border border-[#27272a] rounded-md">
-                <p class="text-xl font-medium">Informações do Post</p>
+            <div class="w-11/12 md:w-9/12 flex flex-col gap-6 p-8 mb-15 border border-[#27272a] rounded-md">  
+                <div class="w-full flex flex-row justify-between items-center font-medium">
+                    <p class="text-xl font-medium">Informações do Post</p>
+                    <p>Olá, {{ userStore.user?.user_metadata?.nome || userStore.user?.email }}</p>
+                </div>
                 <form @submit.prevent="sendPost" class="w-full flex flex-col gap-5 ">
                     <div class="flex flex-row gap-8">
                         <label class="w-1/2 flex flex-col text-sm font-medium gap-1">Titulo * 
@@ -75,11 +78,13 @@ import { usePostsStore } from '@/stores/posts';
 import { useRouter } from 'vue-router';
 import { onMounted } from 'vue';
 import { useCategoryStore } from '@/stores/category.js';
+import { useUserStore } from '@/stores/user'
 
 import HeaderNav from '@/components/HeaderNav.vue';
 import Footer from '@/components/Footer.vue';
 
-
+const userStore = useUserStore()
+const nome = userStore.user?.user_metadata?.nome || userStore.user?.email || 'Usuário';
 const categoryStore = useCategoryStore();
 const titulo = ref('');
 const categoria = ref('');
@@ -108,6 +113,7 @@ async function sendPost() {
   }
 
   const novoPost = {
+    author: nome,
     titulo: titulo.value,
     slug: gerarSlug(titulo.value),
     categoria: categoria.value,

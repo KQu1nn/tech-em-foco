@@ -28,7 +28,7 @@
         </p>
         <p class="flex flex-row gap-1 items-center">
           <font-awesome-icon :icon="['far', 'calendar']" class="rounded" />
-          15 de Janeiro, 2024
+          {{ formatDate(post.data_publicacao) }}
         </p>
         <p class="flex flex-row gap-1 items-center">
           <font-awesome-icon :icon="['far', 'clock']" class="rounded" />
@@ -41,6 +41,8 @@
           {{ post.titulo }}
         </h1>
         <p class="text-xl text-[#a1a1aa]">{{ post.resumo }}</p>
+
+        <AutorMeta :post="post" />
 
         <div class="w-full">
           <div class="w-full h-auto bg-blue-700 border-0 rounded-2xl">
@@ -65,6 +67,7 @@ import { ref, watch, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { usePostsStore } from '@/stores/posts'
 import { marked } from 'marked'
+import AutorMeta from '@/components/AutorMeta.vue'
 
 import HeaderNav from '@/components/HeaderNav.vue'
 import Footer from '@/components/Footer.vue'
@@ -78,6 +81,15 @@ const conteudoHtml = ref('')
 
 function goBack() {
   router.back()
+}
+
+function formatDate(dateString) {
+  if (!dateString) return '';
+
+  const date = new Date(dateString);
+
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  return date.toLocaleDateString('pt-BR', options); 
 }
 
 async function loadPost(slug) {

@@ -59,17 +59,13 @@ import { usePostsStore } from '@/stores/posts'
 import { computed } from 'vue'
 
 const postsStore = usePostsStore()
-const featuredPost = ref(null)
+const featuredPost = computed(() => postsStore.featuredPost)
 
-async function loadFeatured() {
+onMounted(async () => {
   if (!postsStore.posts.length) {
     await postsStore.fetchPosts()
   }
-  featuredPost.value = postsStore.getFeaturedPost()
-}
-
-onMounted(() => {
-  loadFeatured()
+  await postsStore.updateFeaturedPost()
 })
 
 // Formata a data

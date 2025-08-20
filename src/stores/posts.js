@@ -16,12 +16,12 @@ export const usePostsStore = defineStore('posts', () => {
   }
 
   async function fetchMostPopular() {
-    const { data, error } = await supabase.from("posts").select("*").order("views", {ascending: false}).limit(5);
+    const { data, error } = await supabase.from("posts").select("*").order("views", { ascending: false }).limit(5);
 
-    if(!error) {
+    if (!error) {
       mostPopular.value = data;
     } else {
-      console.error(`Erro ao buscar posts populares`,error)
+      console.error(`Erro ao buscar posts populares`, error)
     }
   }
 
@@ -70,9 +70,48 @@ export const usePostsStore = defineStore('posts', () => {
     }
   }
 
-  function getFeaturedPost() {
-    return posts.value.find(post => post.destaque === true) || null
+  async function updateFeaturedPost() {
+  // pega o mais visto
+  const { data: postsData, error } = await supabase
+    .from("posts")
+    .select("id, views")
+    .order("views", { ascending: false })
+    .limit(1)
+
+  if (error) {
+    console.error(error)
+    return
   }
+
+  if (!postsData || postsData.length === 0) {
+    console.log("Nenhum post encontrado")
+    return
+  }
+
+  const topPostId = postsData[0].id
+
+  // zera todos os destaques
+  await supabase.from("posts").update({ destaque: false }).neq("id", topPostId)
+
+  // marca o top como destaque
+  const { error: updateError } = await supabase
+    .from("posts")
+    .update({ destaque: true })
+    .eq("id", topPostId)
+
+  if (updateError) {
+    console.error("Erro ao atualizar destaque:", updateError)
+  } else {
+    console.log("Post em destaque atualizado com sucesso!")
+    // recarrega posts da store
+    await fetchPosts()
+  }
+}
+
+
+  const featuredPost = computed(() =>
+    posts.value.find(post => post.destaque === true) || null
+  )
   const postsCount = computed(() => posts.value.length)
 
 
@@ -113,5 +152,5 @@ export const usePostsStore = defineStore('posts', () => {
   }
 
 
-  return { posts, fetchPosts, mostPopular, fetchMostPopular, addPost, getPostBySlug, fetchPostBySlug, getFeaturedPost, postsCount, incrementViews, delPost }
+  return { posts, fetchPosts, mostPopular, updateFeaturedPost, fetchMostPopular, addPost, getPostBySlug, fetchPostBySlug, featuredPost, postsCount, incrementViews, delPost }
 })

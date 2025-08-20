@@ -4,7 +4,14 @@
     <div class="w-full h-auto gap-10 pt-20 flex flex-col px-10">
 
       <div class="w-full py-5 flex flex-row justify-between">
-        <p>Olá, {{ userStore.user.display_name || userStore.user.email }}</p>
+        <p>Olá, {{ userStore.user.user_metadata?.nome || userStore.user.email }}</p>
+        <button v-if="!toHideBtn" @click="showInput" class="bg-blue-500 px-2 py-0.5 cursor-pointer">Atualizar Nome</button>
+        
+        <div v-if="showUpdateInput">
+          <input v-model="newName" type="text" placeholder="Digite seu nome...">
+          <button @click="changeName" class="bg-green-500 px-2 py-0.5 cursor-pointer" >Mudar nome</button>
+        </div>
+        
         <div class="flex flex-row gap-5 items-center">
           <router-link :to="{ name: 'create-post' }"
             class="cursor-pointer h-11 text-sm px-3 md:text-base md:px-7 rounded-md font-medium bg-gradient-to-r from-blue-500 to-purple-500 flex items-center gap-2">
@@ -65,13 +72,14 @@ import { ref } from 'vue'
 import { onMounted } from 'vue'
 import HeaderNav from '@/components/HeaderNav.vue'
 import Footer from '@/components/Footer.vue'
+import { LogOut } from 'lucide-vue-next'
+import { Trash2 } from 'lucide-vue-next'
 import { useUserStore } from '@/stores/user'
 import { supabase } from '@/supabase.js'
 import { useRouter } from 'vue-router'
 import { usePostsStore } from '@/stores/posts'
 import { useCategoryStore } from '@/stores/category'
-import { LogOut } from 'lucide-vue-next'
-import { Trash2 } from 'lucide-vue-next'
+
 
 const postsStore = usePostsStore()
 const userStore = useUserStore()
@@ -79,6 +87,34 @@ const categoryStore = useCategoryStore()
 const router = useRouter()
 const newCategory = ref('');
 const showError = ref(false);
+const showUpdateInput = ref(false);
+const toHideBtn = ref(false);
+const newName = ref('');
+const userName = ref('');
+
+function showInput() {
+  showUpdateInput.value = true;
+  toHideBtn.value = !toHideBtn.value;
+}
+async function changeName() {
+  if(!newName.value.trim()) return;
+
+  const { data, error } = await supabase.auth.updateUser({
+    data: {nome: newName.value.trim()}
+  })
+
+  if(error) {
+    console.error('Não foi possivel atualizar o nome de Usuário',error);
+    return;
+  }
+
+  userStore.setUser(data.user);
+
+  userName.value = newName.value;
+  newName.value = '';
+  showUpdateInput.value = false;
+  toHideBtn.value = false;
+}
 
 async function logout() {
   await supabase.auth.signOut()
@@ -100,6 +136,13 @@ const handleAddCategory = () => {
 }
 
 onMounted(async () => {
+  const { data: { user }, error } = await supabase.auth.getUser();
+
+  if (user) {
+    userStore.setUser(user);
+    userName.value = user.user_metadata?.nome || ''
+  }
+
   await postsStore.fetchPosts();
   await categoryStore.fetchCategories()
 })

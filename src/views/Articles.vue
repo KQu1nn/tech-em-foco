@@ -6,7 +6,7 @@
     </div>
     <div class="w-full px-10 pb-15 flex flex-col md:flex-row gap-8 justify-between text-white">
       <MostPopular />
-      <PopularTags />
+      <Categories />
     </div>
     <Footer />
   </div>
@@ -16,7 +16,7 @@
 import FeedCards from '@/components/FeedCards.vue';
 import HeaderNav from '@/components/HeaderNav.vue';
 import MostPopular from '@/components/MostPopular.vue';
-import PopularTags from '@/components/PopularTags.vue';
+import Categories from '@/components/Categories.vue';
 import Footer from '@/components/Footer.vue';
 
 import { usePostsStore } from '@/stores/posts';
